@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Intern Attendance</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <div class="page">
+
+
+        <div class="attendance-card">
+
+
+            <!-- HEADER -->
+
+            <div class="header">
+
+                <div class="logo">
+                    ✓
+                </div>
+
+                <h1>
+                    Intern Attendance
+                </h1>
+
+                <p>
+                    Daily Attendance System
+                </p>
+
+            </div>
+
+
+
+            <!-- NETWORK STATUS -->
+
+            <div id="networkStatus" class="network checking">
+
+                Checking company Wi-Fi...
+
+            </div>
+
+
+
+            <!-- ERROR -->
+
+            <div id="errorMessage" class="message error">
+            </div>
+
+
+
+            <!-- SUCCESS -->
+
+            <div id="successMessage" class="message success">
+            </div>
+
+
+
+            <!-- FORM -->
+
+            <form id="attendanceForm">
+
+
+                <!-- Employee ID -->
+
+                <div class="form-group">
+
+                    <label for="employeeId">
+                        Employee ID
+                    </label>
+
+                    <input type="number" id="employeeId" placeholder="Enter Employee ID" required autocomplete="off">
+
+                </div>
+
+
+
+                <!-- Email -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input type="email" id="email" placeholder="Enter your registered email" required
+                        autocomplete="off">
+
+                </div>
+
+
+
+                <!-- Phone -->
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input type="tel" id="phone" placeholder="Enter your registered phone" required autocomplete="off">
+
+                </div>
+
+
+
+                <!-- TODAY -->
+
+                <div class="today-box">
+
+                    <div>
+
+                        <span>
+                            Attendance Date
+                        </span>
+
+                        <strong id="todayDate">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="today-lock">
+                        🔒
+                    </div>
+
+                </div>
+
+
+
+                <!-- BUTTON -->
+
+                <button type="submit" id="submitButton">
+
+                    Mark Today's Attendance
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- FOOTER -->
+
+            <div class="footer">
+
+                <p>
+                    Attendance is available only from company Wi-Fi.
+                </p>
+
+                <p>
+                    One attendance is allowed per day.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <script>
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | API URL
+        |--------------------------------------------------------------------------
+        */
+
+        const API_URL =
+            "http://192.168.1.5/DailyAttendancebackend/intern_attendance.php";
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Elements
+        |--------------------------------------------------------------------------
+        */
+
+        const form =
+            document.getElementById('attendanceForm');
+
+        const employeeId =
+            document.getElementById('employeeId');
+
+        const email =
+            document.getElementById('email');
+
+        const phone =
+            document.getElementById('phone');
+
+        const submitButton =
+            document.getElementById('submitButton');
+
+        const networkStatus =
+            document.getElementById('networkStatus');
+
+        const errorMessage =
+            document.getElementById('errorMessage');
+
+        const successMessage =
+            document.getElementById('successMessage');
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Show today's date
+        |--------------------------------------------------------------------------
+        */
+
+        function showToday() {
+
+            const date =
+                new Date();
+
+            const today =
+                date.toLocaleDateString(
+                    'en-IN',
+                    {
+                        timeZone: 'Asia/Kolkata',
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    }
+                );
+
+            document
+                .getElementById('todayDate')
+                .textContent = today;
+        }
+
+
+        showToday();
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Check company network
+        |--------------------------------------------------------------------------
+        |
+        | We send a request to PHP.
+        |
+        | PHP checks the actual client IP.
+        |
+        */
+
+        async function checkNetwork() {
+
+            try {
+
+                const response =
+                    await fetch(
+                        API_URL,
+                        {
+                            method: 'POST',
+
+                            headers: {
+                                'Content-Type':
+                                    'application/json'
+                            },
+
+                            body: JSON.stringify({})
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                /*
+                |--------------------------------------------------------------
+                | This means the request reached PHP and PHP accepted
+                | the company network but employee ID was missing.
+                |--------------------------------------------------------------
+                */
+
+                if (
+                    result.error ===
+                    'Employee ID is required.'
+                ) {
+
+                    networkStatus.textContent =
+                        '✓ Connected to company Wi-Fi';
+
+                    networkStatus.className =
+                        'network connected';
+
+                    submitButton.disabled = false;
+
+                    return;
+                }
+
+
+                /*
+                |--------------------------------------------------------------
+                | Network rejected
+                |--------------------------------------------------------------
+                */
+
+                if (
+                    result.error &&
+                    result.error.includes(
+                        'company Wi-Fi'
+                    )
+                ) {
+
+                    networkStatus.textContent =
+                        '✕ Connect to company Wi-Fi';
+
+                    networkStatus.className =
+                        'network disconnected';
+
+                    submitButton.disabled = true;
+
+                    return;
+                }
+
+
+                /*
+                |--------------------------------------------------------------
+                | Server reachable
+                |--------------------------------------------------------------
+                */
+
+                networkStatus.textContent =
+                    '✓ Company network available';
+
+                networkStatus.className =
+                    'network connected';
+
+                submitButton.disabled = false;
+
+
+            } catch (error) {
+
+                networkStatus.textContent =
+                    '✕ Attendance server unavailable';
+
+                networkStatus.className =
+                    'network disconnected';
+
+                submitButton.disabled = true;
+
+            }
+
+        }
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Submit attendance
+        |--------------------------------------------------------------------------
+        */
+
+        form.addEventListener(
+            'submit',
+            async function (event) {
+
+                event.preventDefault();
+
+
+                errorMessage.style.display =
+                    'none';
+
+                successMessage.style.display =
+                    'none';
+
+
+                const id =
+                    employeeId.value.trim();
+
+                const emailValue =
+                    email.value.trim();
+
+                const phoneValue =
+                    phone.value.trim();
+
+
+                /*
+                |--------------------------------------------------------------
+                | Frontend validation
+                |--------------------------------------------------------------
+                */
+
+                if (!id) {
+
+                    showError(
+                        'Please enter your Employee ID.'
+                    );
+
+                    return;
+                }
+
+
+                if (!emailValue) {
+
+                    showError(
+                        'Please enter your email.'
+                    );
+
+                    return;
+                }
+
+
+                if (!phoneValue) {
+
+                    showError(
+                        'Please enter your phone number.'
+                    );
+
+                    return;
+                }
+
+
+                /*
+                |--------------------------------------------------------------
+                | Disable button
+                |--------------------------------------------------------------
+                */
+
+                submitButton.disabled = true;
+
+                submitButton.textContent =
+                    'Checking & Saving...';
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            API_URL,
+                            {
+                                method: 'POST',
+
+                                headers: {
+                                    'Content-Type':
+                                        'application/json'
+                                },
+
+                                body: JSON.stringify({
+
+                                    employee_id:
+                                        parseInt(id),
+
+                                    email:
+                                        emailValue,
+
+                                    phone:
+                                        phoneValue
+
+                                })
+                            }
+                        );
+
+
+                    const result =
+                        await response.json();
+
+
+                    /*
+                    |----------------------------------------------------------
+                    | SUCCESS
+                    |----------------------------------------------------------
+                    */
+
+                    if (result.success) {
+
+                        showSuccess(
+                            `
+                    <strong>
+                        ✓ Attendance Marked Successfully
+                    </strong>
+
+                    <br><br>
+
+                    Name:
+                    ${result.data.name}
+
+                    <br>
+
+                    Date:
+                    ${result.data.date}
+
+                    <br>
+
+                    In Time:
+                    ${formatTime(result.data.in_time)}
+
+                    <br>
+
+                    Status:
+                    ${result.data.status}
+                    `
+                        );
+
+
+                        /*
+                        |------------------------------------------------------
+                        | Lock the form after successful attendance
+                        |------------------------------------------------------
+                        */
+
+                        employeeId.disabled = true;
+
+                        email.disabled = true;
+
+                        phone.disabled = true;
+
+                        submitButton.textContent =
+                            '✓ Attendance Marked';
+
+
+                        return;
+                    }
+
+
+                    /*
+                    |----------------------------------------------------------
+                    | ERROR
+                    |----------------------------------------------------------
+                    */
+
+                    showError(
+                        result.error ||
+                        'Unable to mark attendance.'
+                    );
+
+
+                    submitButton.disabled = false;
+
+                    submitButton.textContent =
+                        "Mark Today's Attendance";
+
+
+                } catch (error) {
+
+                    showError(
+                        'Unable to connect to attendance server.'
+                    );
+
+
+                    submitButton.disabled = false;
+
+                    submitButton.textContent =
+                        "Mark Today's Attendance";
+                }
+
+            }
+        );
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Error message
+        |--------------------------------------------------------------------------
+        */
+
+        function showError(message) {
+
+            errorMessage.innerHTML =
+                message;
+
+            errorMessage.style.display =
+                'block';
+        }
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Success message
+        |--------------------------------------------------------------------------
+        */
+
+        function showSuccess(message) {
+
+            successMessage.innerHTML =
+                message;
+
+            successMessage.style.display =
+                'block';
+        }
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Format time
+        |--------------------------------------------------------------------------
+        */
+
+        function formatTime(time) {
+
+            if (!time) {
+                return '-';
+            }
+
+
+            const parts =
+                time.split(':');
+
+
+            let hour =
+                parseInt(parts[0]);
+
+            const minute =
+                parts[1];
+
+
+            const second =
+                parts[2];
+
+
+            const ampm =
+                hour >= 12
+                    ? 'PM'
+                    : 'AM';
+
+
+            hour =
+                hour % 12 || 12;
+
+
+            return (
+                hour +
+                ':' +
+                minute +
+                ':' +
+                second +
+                ' ' +
+                ampm
+            );
+        }
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Initial network check
+        |--------------------------------------------------------------------------
+        */
+
+        checkNetwork();
+
+    </script>
+
+
+</body>
+
+</html>

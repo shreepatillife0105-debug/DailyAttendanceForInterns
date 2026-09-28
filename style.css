@@ -1,0 +1,375 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef4ff,
+            #f8fbff
+        );
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+}
+
+
+.page {
+
+    width: 100%;
+
+    max-width: 430px;
+}
+
+
+.attendance-card {
+
+    background: #ffffff;
+
+    border-radius: 22px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 15px 45px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+/* Header */
+
+.header {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+
+.logo {
+
+    width: 65px;
+
+    height: 65px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    background: #0d6efd;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 32px;
+
+    font-weight: bold;
+}
+
+
+.header h1 {
+
+    margin:
+        15px
+        0
+        5px;
+
+    font-size: 25px;
+
+    color: #222;
+}
+
+
+.header p {
+
+    margin: 0;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* Network */
+
+.network {
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-bottom: 20px;
+}
+
+
+.network.checking {
+
+    background: #fff3cd;
+
+    color: #856404;
+}
+
+
+.network.connected {
+
+    background: #d1e7dd;
+
+    color: #0f5132;
+}
+
+
+.network.disconnected {
+
+    background: #f8d7da;
+
+    color: #842029;
+}
+
+
+/* Form */
+
+.form-group {
+
+    margin-bottom: 18px;
+}
+
+
+.form-group label {
+
+    display: block;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #333;
+
+    margin-bottom: 7px;
+}
+
+
+.form-group input {
+
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid #d8d8d8;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+.form-group input:focus {
+
+    border-color: #0d6efd;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(13, 110, 253, 0.10);
+}
+
+
+.form-group input:disabled {
+
+    background: #f1f3f5;
+
+    cursor: not-allowed;
+}
+
+
+/* Today */
+
+.today-box {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: #f5f7fa;
+
+    border-radius: 10px;
+
+    padding: 14px 16px;
+
+    margin-bottom: 20px;
+}
+
+
+.today-box span {
+
+    display: block;
+
+    font-size: 12px;
+
+    color: #777;
+
+    margin-bottom: 4px;
+}
+
+
+.today-box strong {
+
+    font-size: 15px;
+
+    color: #222;
+}
+
+
+.today-lock {
+
+    font-size: 20px;
+}
+
+
+/* Button */
+
+button {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #0d6efd;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+button:hover {
+
+    background: #0b5ed7;
+}
+
+
+button:disabled {
+
+    background: #9da9b5;
+
+    cursor: not-allowed;
+}
+
+
+/* Messages */
+
+.message {
+
+    display: none;
+
+    border-radius: 10px;
+
+    padding: 14px;
+
+    margin-bottom: 18px;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+.message.error {
+
+    background: #f8d7da;
+
+    color: #842029;
+}
+
+
+.message.success {
+
+    background: #d1e7dd;
+
+    color: #0f5132;
+}
+
+
+/* Footer */
+
+.footer {
+
+    text-align: center;
+
+    margin-top: 22px;
+}
+
+
+.footer p {
+
+    margin: 5px 0;
+
+    font-size: 12px;
+
+    color: #888;
+}
+
+
+/* Mobile */
+
+@media (max-width: 500px) {
+
+    body {
+
+        padding: 12px;
+    }
+
+
+    .attendance-card {
+
+        padding: 25px 20px;
+    }
+
+
+    .header h1 {
+
+        font-size: 22px;
+    }
+}
