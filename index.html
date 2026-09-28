@@ -5,13 +5,10 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Intern Attendance</title>
-
 
     <style>
 
@@ -19,10 +16,8 @@
             box-sizing: border-box;
         }
 
-
         body {
             margin: 0;
-
             min-height: 100vh;
 
             font-family:
@@ -34,33 +29,19 @@
                 Arial,
                 sans-serif;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #f4f7fb 0%,
-                    #eaf0f8 100%
-                );
+            background: #f4f7fb;
 
             display: flex;
-
             justify-content: center;
-
             align-items: center;
 
-            padding: 24px;
+            padding: 20px;
 
             color: #172033;
         }
 
-
-        /* ---------------------------------------
-           MAIN CARD
-        --------------------------------------- */
-
         .attendance-card {
-
             width: 100%;
-
             max-width: 430px;
 
             background: #ffffff;
@@ -70,42 +51,28 @@
             border-radius: 18px;
 
             box-shadow:
-                0 20px 50px rgba(20, 40, 80, 0.10);
+                0 15px 40px rgba(20, 40, 80, 0.10);
 
             overflow: hidden;
         }
 
-
-        /* ---------------------------------------
-           HEADER
-        --------------------------------------- */
-
-        .card-header {
-
+        .header {
             padding: 28px 30px 24px;
 
             border-bottom: 1px solid #edf0f4;
-
-            background: #ffffff;
         }
 
-
         .brand {
-
             display: flex;
-
             align-items: center;
 
-            gap: 13px;
+            gap: 12px;
 
             margin-bottom: 22px;
         }
 
-
         .brand-icon {
-
             width: 44px;
-
             height: 44px;
 
             border-radius: 11px;
@@ -115,31 +82,21 @@
             color: #2563eb;
 
             display: flex;
-
+            justify-content: center;
             align-items: center;
 
-            justify-content: center;
-
-            font-size: 21px;
-
-            font-weight: 700;
+            font-size: 20px;
+            font-weight: bold;
         }
-
 
         .brand-title {
+            margin: 0;
 
             font-size: 18px;
-
             font-weight: 700;
-
-            color: #172033;
-
-            margin: 0;
         }
 
-
         .brand-subtitle {
-
             margin: 3px 0 0;
 
             font-size: 13px;
@@ -147,37 +104,24 @@
             color: #7a8495;
         }
 
-
         h1 {
-
             margin: 0;
 
             font-size: 24px;
-
             font-weight: 700;
-
-            letter-spacing: -0.4px;
         }
 
-
         .description {
-
             margin: 7px 0 0;
 
             font-size: 14px;
 
-            line-height: 1.5;
-
             color: #6b7280;
         }
 
-
-        /* ---------------------------------------
-           WIFI STATUS
-        --------------------------------------- */
+        /* NETWORK STATUS */
 
         .network-status {
-
             margin: 20px 30px 0;
 
             padding: 11px 13px;
@@ -185,89 +129,61 @@
             border-radius: 9px;
 
             display: flex;
-
             align-items: center;
 
             gap: 9px;
 
             font-size: 13px;
-
             font-weight: 600;
         }
 
-
         .network-status.checking {
-
             background: #f3f4f6;
-
             color: #6b7280;
         }
 
-
         .network-status.connected {
-
             background: #ecfdf3;
-
             color: #087443;
         }
 
-
         .network-status.disconnected {
-
             background: #fff4f2;
-
             color: #c4321d;
         }
 
-
         .status-dot {
-
             width: 8px;
-
             height: 8px;
 
             border-radius: 50%;
 
             background: currentColor;
-
-            flex-shrink: 0;
         }
 
-
-        /* ---------------------------------------
-           FORM
-        --------------------------------------- */
+        /* FORM */
 
         .form-container {
-
             padding: 28px 30px 30px;
         }
 
-
         .form-group {
-
-            margin-bottom: 20px;
+            margin-bottom: 19px;
         }
 
-
         label {
-
             display: block;
 
             margin-bottom: 8px;
 
             font-size: 13px;
-
             font-weight: 600;
 
             color: #344054;
         }
 
-
         input {
-
             width: 100%;
-
             height: 46px;
 
             padding: 0 13px;
@@ -284,29 +200,17 @@
 
             outline: none;
 
-            transition:
-                border-color 0.2s,
-                box-shadow 0.2s;
+            transition: 0.2s;
         }
-
-
-        input::placeholder {
-
-            color: #a1a8b5;
-        }
-
 
         input:focus {
-
             border-color: #2563eb;
 
             box-shadow:
                 0 0 0 3px rgba(37, 99, 235, 0.10);
         }
 
-
         input:disabled {
-
             background: #f5f7fa;
 
             color: #667085;
@@ -314,15 +218,10 @@
             cursor: not-allowed;
         }
 
-
-        /* ---------------------------------------
-           BUTTON
-        --------------------------------------- */
+        /* BUTTON */
 
         .submit-button {
-
             width: 100%;
-
             height: 47px;
 
             border: none;
@@ -331,47 +230,30 @@
 
             background: #2563eb;
 
-            color: #ffffff;
+            color: white;
 
             font-size: 14px;
-
             font-weight: 600;
 
             cursor: pointer;
 
-            transition:
-                background 0.2s,
-                transform 0.1s;
+            transition: 0.2s;
         }
 
-
         .submit-button:hover {
-
             background: #1d4ed8;
         }
 
-
-        .submit-button:active {
-
-            transform: translateY(1px);
-        }
-
-
         .submit-button:disabled {
-
             background: #9aa4b2;
 
             cursor: not-allowed;
-
-            transform: none;
         }
 
-
-        /* ---------------------------------------
-           MESSAGE
-        --------------------------------------- */
+        /* MESSAGE */
 
         #message {
+            display: none;
 
             margin-top: 18px;
 
@@ -381,16 +263,10 @@
 
             font-size: 13px;
 
-            line-height: 1.45;
-
             text-align: center;
-
-            display: none;
         }
 
-
         #message.success {
-
             display: block;
 
             background: #ecfdf3;
@@ -400,9 +276,7 @@
             border: 1px solid #c8f0da;
         }
 
-
         #message.error {
-
             display: block;
 
             background: #fff4f2;
@@ -412,14 +286,8 @@
             border: 1px solid #ffd6cf;
         }
 
-
-        /* ---------------------------------------
-           FOOTER
-        --------------------------------------- */
-
-        .card-footer {
-
-            padding: 15px 30px;
+        .footer {
+            padding: 14px 30px;
 
             border-top: 1px solid #edf0f4;
 
@@ -432,18 +300,13 @@
             color: #8a93a3;
         }
 
-
-        /* ---------------------------------------
-           MOBILE
-        --------------------------------------- */
-
         @media (max-width: 480px) {
 
             body {
                 padding: 15px;
             }
 
-            .card-header {
+            .header {
                 padding: 24px 22px 20px;
             }
 
@@ -453,17 +316,14 @@
             }
 
             .form-container {
-                padding: 24px 22px 25px;
+                padding: 24px 22px;
             }
 
-            .card-footer {
+            .footer {
                 padding-left: 22px;
                 padding-right: 22px;
             }
 
-            h1 {
-                font-size: 22px;
-            }
         }
 
     </style>
@@ -479,7 +339,7 @@
 
     <!-- HEADER -->
 
-    <div class="card-header">
+    <div class="header">
 
         <div class="brand">
 
@@ -523,7 +383,7 @@
         <span class="status-dot"></span>
 
         <span id="networkText">
-            Checking network connection...
+            Checking company network...
         </span>
 
     </div>
@@ -533,11 +393,8 @@
 
     <div class="form-container">
 
-
         <form id="attendanceForm">
 
-
-            <!-- EMPLOYEE ID -->
 
             <div class="form-group">
 
@@ -555,8 +412,6 @@
             </div>
 
 
-            <!-- EMAIL -->
-
             <div class="form-group">
 
                 <label for="email">
@@ -572,8 +427,6 @@
 
             </div>
 
-
-            <!-- EXIT TIME -->
 
             <div class="form-group">
 
@@ -591,6 +444,9 @@
             </div>
 
 
+            <!-- IMPORTANT:
+                 NOT disabled -->
+
             <button
                 type="submit"
                 id="submitButton"
@@ -600,17 +456,16 @@
             </button>
 
 
-            <!-- ONLY MESSAGE AREA -->
+            <!-- ONLY ONE MESSAGE -->
 
             <div id="message"></div>
-
 
         </form>
 
     </div>
 
 
-    <div class="card-footer">
+    <div class="footer">
 
         Attendance can be marked only from the company network.
 
@@ -673,75 +528,6 @@ const networkText =
 
 
 /* =====================================================
-   NETWORK CHECK
-===================================================== */
-
-async function checkNetwork() {
-
-    networkStatus.className =
-        "network-status checking";
-
-    networkText.innerText =
-        "Checking network connection...";
-
-
-    try {
-
-        /*
-         * We check your local PHP server.
-         *
-         * If 192.168.1.5 is accessible,
-         * the device is connected to the network
-         * where your attendance server is available.
-         */
-
-        const response =
-            await fetch(
-                API,
-                {
-                    method: "OPTIONS",
-
-                    cache: "no-store"
-                }
-            );
-
-
-        /*
-         * Server responded.
-         */
-
-        networkStatus.className =
-            "network-status connected";
-
-        networkText.innerText =
-            "Connected to company network";
-
-        button.disabled =
-            false;
-
-
-        return true;
-
-
-    } catch (error) {
-
-        networkStatus.className =
-            "network-status disconnected";
-
-        networkText.innerText =
-            "Connect to company Wi-Fi to mark attendance";
-
-        button.disabled =
-            true;
-
-
-        return false;
-    }
-
-}
-
-
-/* =====================================================
    LOAD SAVED INTERN
 ===================================================== */
 
@@ -760,9 +546,9 @@ if (savedId && savedEmail) {
     email.value =
         savedEmail;
 
-
     /*
-     * Lock these fields.
+     * Remembered intern cannot change
+     * ID or email from this browser.
      */
 
     employeeId.disabled =
@@ -774,29 +560,87 @@ if (savedId && savedEmail) {
 
 
 /* =====================================================
-   INITIAL NETWORK CHECK
+   NETWORK CHECK
+===================================================== */
+
+async function checkNetwork() {
+
+    networkStatus.className =
+        "network-status checking";
+
+    networkText.innerText =
+        "Checking company network...";
+
+
+    try {
+
+        /*
+         * IMPORTANT:
+         *
+         * We use POST here because your PHP
+         * endpoint accepts POST.
+         *
+         * Empty data will only cause PHP
+         * validation to fail.
+         *
+         * It will NOT insert attendance.
+         */
+
+        const response =
+            await fetch(
+                API,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({})
+                }
+            );
+
+
+        /*
+         * If PHP responded, server is reachable.
+         */
+
+        if (response) {
+
+            networkStatus.className =
+                "network-status connected";
+
+            networkText.innerText =
+                "Connected to company network";
+
+            return true;
+        }
+
+
+    } catch (error) {
+
+        networkStatus.className =
+            "network-status disconnected";
+
+        networkText.innerText =
+            "Connect to company Wi-Fi to mark attendance";
+
+        return false;
+    }
+
+}
+
+
+/* =====================================================
+   INITIAL CHECK
 ===================================================== */
 
 checkNetwork();
 
 
-/*
- * Check again when page becomes active.
- */
-
-window.addEventListener(
-    "online",
-    checkNetwork
-);
-
-window.addEventListener(
-    "offline",
-    checkNetwork
-);
-
-
 /* =====================================================
-   FORM SUBMIT
+   SUBMIT
 ===================================================== */
 
 form.addEventListener(
@@ -807,25 +651,11 @@ form.addEventListener(
 
 
         /*
-         * Verify network first.
+         * Do NOT disable the button just because
+         * the network check is running.
          */
 
-        const connected =
-            await checkNetwork();
-
-
-        if (!connected) {
-
-            return;
-        }
-
-
-        /*
-         * Clear previous message.
-         */
-
-        message.style.display =
-            "none";
+        clearMessage();
 
 
         const id =
@@ -837,6 +667,10 @@ form.addEventListener(
         const exit =
             exitTime.value.trim();
 
+
+        /* ---------------------------------------------
+           VALIDATION
+        --------------------------------------------- */
 
         if (!id) {
 
@@ -871,6 +705,10 @@ form.addEventListener(
         }
 
 
+        /* ---------------------------------------------
+           SUBMIT
+        --------------------------------------------- */
+
         button.disabled =
             true;
 
@@ -884,14 +722,11 @@ form.addEventListener(
                 await fetch(
                     API,
                     {
-
                         method: "POST",
 
                         headers: {
-
                             "Content-Type":
                                 "application/json"
-
                         },
 
                         body: JSON.stringify({
@@ -906,7 +741,6 @@ form.addEventListener(
                                 exit
 
                         })
-
                     }
                 );
 
@@ -915,8 +749,11 @@ form.addEventListener(
                 await response.json();
 
 
-            if (result.success) {
+            /* -----------------------------------------
+               SUCCESS
+            ----------------------------------------- */
 
+            if (result.success) {
 
                 /*
                  * Remember intern.
@@ -934,7 +771,7 @@ form.addEventListener(
 
 
                 /*
-                 * Lock ID and email.
+                 * Lock ID + email.
                  */
 
                 employeeId.disabled =
@@ -945,17 +782,17 @@ form.addEventListener(
 
 
                 /*
-                 * Only message.
+                 * Clear exit field.
                  */
+
+                exitTime.value =
+                    "";
+
 
                 showMessage(
                     "Attendance successfully added.",
                     true
                 );
-
-
-                exitTime.value =
-                    "";
 
 
                 button.innerText =
@@ -964,25 +801,40 @@ form.addEventListener(
                 button.disabled =
                     true;
 
-
-            } else {
-
-
-                showMessage(
-                    result.message,
-                    false
-                );
-
-
-                button.disabled =
-                    false;
-
-                button.innerText =
-                    "Submit Attendance";
+                return;
             }
 
 
+            /* -----------------------------------------
+               PHP ERROR
+            ----------------------------------------- */
+
+            showMessage(
+                result.message ||
+                "Unable to add attendance.",
+                false
+            );
+
+
+            button.disabled =
+                false;
+
+            button.innerText =
+                "Submit Attendance";
+
+
         } catch (error) {
+
+            /*
+             * Server / Wi-Fi problem.
+             */
+
+            networkStatus.className =
+                "network-status disconnected";
+
+            networkText.innerText =
+                "Connect to company Wi-Fi to mark attendance";
+
 
             showMessage(
                 "Unable to connect to attendance server.",
@@ -1002,7 +854,7 @@ form.addEventListener(
 
 
 /* =====================================================
-   MESSAGE
+   MESSAGE FUNCTIONS
 ===================================================== */
 
 function showMessage(
@@ -1020,6 +872,19 @@ function showMessage(
 
     message.style.display =
         "block";
+}
+
+
+function clearMessage() {
+
+    message.innerText =
+        "";
+
+    message.className =
+        "";
+
+    message.style.display =
+        "none";
 }
 
 
