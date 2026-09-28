@@ -35,7 +35,7 @@ body {
 
     width: 100%;
 
-    max-width: 430px;
+    max-width: 440px;
 }
 
 
@@ -53,7 +53,9 @@ body {
 }
 
 
-/* Header */
+/* -------------------------------------------------
+   HEADER
+------------------------------------------------- */
 
 .header {
 
@@ -112,7 +114,9 @@ body {
 }
 
 
-/* Network */
+/* -------------------------------------------------
+   NETWORK
+------------------------------------------------- */
 
 .network {
 
@@ -154,7 +158,9 @@ body {
 }
 
 
-/* Form */
+/* -------------------------------------------------
+   FORM
+------------------------------------------------- */
 
 .form-group {
 
@@ -204,61 +210,9 @@ body {
 }
 
 
-.form-group input:disabled {
-
-    background: #f1f3f5;
-
-    cursor: not-allowed;
-}
-
-
-/* Today */
-
-.today-box {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    background: #f5f7fa;
-
-    border-radius: 10px;
-
-    padding: 14px 16px;
-
-    margin-bottom: 20px;
-}
-
-
-.today-box span {
-
-    display: block;
-
-    font-size: 12px;
-
-    color: #777;
-
-    margin-bottom: 4px;
-}
-
-
-.today-box strong {
-
-    font-size: 15px;
-
-    color: #222;
-}
-
-
-.today-lock {
-
-    font-size: 20px;
-}
-
-
-/* Button */
+/* -------------------------------------------------
+   BUTTON
+------------------------------------------------- */
 
 button {
 
@@ -298,7 +252,223 @@ button:disabled {
 }
 
 
-/* Messages */
+/* -------------------------------------------------
+   EMPLOYEE INFO
+------------------------------------------------- */
+
+.attendance-section {
+
+    margin-top: 5px;
+}
+
+
+.employee-info {
+
+    background: #f5f7fa;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    margin-bottom: 15px;
+}
+
+
+.employee-info span {
+
+    display: block;
+
+    color: #777;
+
+    font-size: 12px;
+
+    margin-bottom: 5px;
+}
+
+
+.employee-info strong {
+
+    color: #222;
+
+    font-size: 17px;
+}
+
+
+/* -------------------------------------------------
+   DATE
+------------------------------------------------- */
+
+.date-box {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: #f5f7fa;
+
+    border-radius: 10px;
+
+    padding: 14px 16px;
+
+    margin-bottom: 15px;
+}
+
+
+.date-box span {
+
+    display: block;
+
+    color: #777;
+
+    font-size: 12px;
+
+    margin-bottom: 5px;
+}
+
+
+.date-box strong {
+
+    font-size: 15px;
+
+    color: #222;
+}
+
+
+.lock {
+
+    font-size: 20px;
+}
+
+
+/* -------------------------------------------------
+   TIME CARDS
+------------------------------------------------- */
+
+.time-card {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    margin-bottom: 12px;
+
+    background: #f8f9fa;
+
+    border: 1px solid #eeeeee;
+}
+
+
+.time-card span {
+
+    color: #666;
+
+    font-size: 14px;
+}
+
+
+.time-card strong {
+
+    color: #222;
+
+    font-size: 15px;
+}
+
+
+/* -------------------------------------------------
+   ENTRY BUTTON
+------------------------------------------------- */
+
+.entry-button {
+
+    background: #198754;
+
+    margin-top: 8px;
+}
+
+
+.entry-button:hover {
+
+    background: #157347;
+}
+
+
+/* -------------------------------------------------
+   EXIT BUTTON
+------------------------------------------------- */
+
+.exit-button {
+
+    background: #dc3545;
+
+    margin-top: 8px;
+}
+
+
+.exit-button:hover {
+
+    background: #bb2d3b;
+}
+
+
+/* -------------------------------------------------
+   COMPLETED
+------------------------------------------------- */
+
+.completed {
+
+    display: none;
+
+    background: #d1e7dd;
+
+    color: #0f5132;
+
+    padding: 14px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-top: 15px;
+}
+
+
+/* -------------------------------------------------
+   CHANGE BUTTON
+------------------------------------------------- */
+
+.change-button {
+
+    margin-top: 15px;
+
+    background: #6c757d;
+
+    font-size: 13px;
+
+    padding: 11px;
+}
+
+
+.change-button:hover {
+
+    background: #5c636a;
+}
+
+
+/* -------------------------------------------------
+   MESSAGES
+------------------------------------------------- */
 
 .message {
 
@@ -332,7 +502,9 @@ button:disabled {
 }
 
 
-/* Footer */
+/* -------------------------------------------------
+   FOOTER
+------------------------------------------------- */
 
 .footer {
 
@@ -352,7 +524,9 @@ button:disabled {
 }
 
 
-/* Mobile */
+/* -------------------------------------------------
+   MOBILE
+------------------------------------------------- */
 
 @media (max-width: 500px) {
 
