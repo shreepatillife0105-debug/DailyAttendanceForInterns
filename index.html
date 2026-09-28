@@ -15,101 +15,373 @@
 
     <style>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f3f4f6;
+        * {
+            box-sizing: border-box;
+        }
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+
+        body {
+            margin: 0;
 
             min-height: 100vh;
+
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4f7fb 0%,
+                    #eaf0f8 100%
+                );
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 24px;
+
+            color: #172033;
+        }
+
+
+        /* ---------------------------------------
+           MAIN CARD
+        --------------------------------------- */
+
+        .attendance-card {
+
+            width: 100%;
+
+            max-width: 430px;
+
+            background: #ffffff;
+
+            border: 1px solid #e5eaf1;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 20px 50px rgba(20, 40, 80, 0.10);
+
+            overflow: hidden;
+        }
+
+
+        /* ---------------------------------------
+           HEADER
+        --------------------------------------- */
+
+        .card-header {
+
+            padding: 28px 30px 24px;
+
+            border-bottom: 1px solid #edf0f4;
+
+            background: #ffffff;
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .brand-icon {
+
+            width: 44px;
+
+            height: 44px;
+
+            border-radius: 11px;
+
+            background: #eef4ff;
+
+            color: #2563eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 21px;
+
+            font-weight: 700;
+        }
+
+
+        .brand-title {
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            color: #172033;
 
             margin: 0;
         }
 
 
-        .box {
-            width: 350px;
+        .brand-subtitle {
 
-            background: white;
+            margin: 3px 0 0;
 
-            padding: 25px;
+            font-size: 13px;
 
-            border-radius: 10px;
-
-            box-shadow:
-                0 5px 20px rgba(0,0,0,0.1);
+            color: #7a8495;
         }
 
 
-        h2 {
-            text-align: center;
-            margin-bottom: 25px;
+        h1 {
+
+            margin: 0;
+
+            font-size: 24px;
+
+            font-weight: 700;
+
+            letter-spacing: -0.4px;
+        }
+
+
+        .description {
+
+            margin: 7px 0 0;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            color: #6b7280;
+        }
+
+
+        /* ---------------------------------------
+           WIFI STATUS
+        --------------------------------------- */
+
+        .network-status {
+
+            margin: 20px 30px 0;
+
+            padding: 11px 13px;
+
+            border-radius: 9px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .network-status.checking {
+
+            background: #f3f4f6;
+
+            color: #6b7280;
+        }
+
+
+        .network-status.connected {
+
+            background: #ecfdf3;
+
+            color: #087443;
+        }
+
+
+        .network-status.disconnected {
+
+            background: #fff4f2;
+
+            color: #c4321d;
+        }
+
+
+        .status-dot {
+
+            width: 8px;
+
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: currentColor;
+
+            flex-shrink: 0;
+        }
+
+
+        /* ---------------------------------------
+           FORM
+        --------------------------------------- */
+
+        .form-container {
+
+            padding: 28px 30px 30px;
+        }
+
+
+        .form-group {
+
+            margin-bottom: 20px;
         }
 
 
         label {
+
             display: block;
 
-            margin-bottom: 6px;
+            margin-bottom: 8px;
 
-            font-weight: bold;
+            font-size: 13px;
+
+            font-weight: 600;
+
+            color: #344054;
         }
 
 
         input {
+
             width: 100%;
 
-            padding: 11px;
+            height: 46px;
 
-            margin-bottom: 18px;
+            padding: 0 13px;
 
-            border: 1px solid #ccc;
+            border: 1px solid #d7dce5;
 
-            border-radius: 6px;
+            border-radius: 9px;
 
-            box-sizing: border-box;
+            background: #ffffff;
 
-            font-size: 15px;
+            color: #172033;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition:
+                border-color 0.2s,
+                box-shadow 0.2s;
+        }
+
+
+        input::placeholder {
+
+            color: #a1a8b5;
+        }
+
+
+        input:focus {
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px rgba(37, 99, 235, 0.10);
         }
 
 
         input:disabled {
-            background: #eeeeee;
+
+            background: #f5f7fa;
+
+            color: #667085;
+
+            cursor: not-allowed;
         }
 
 
-        button {
+        /* ---------------------------------------
+           BUTTON
+        --------------------------------------- */
+
+        .submit-button {
+
             width: 100%;
 
-            padding: 12px;
-
-            background: #0d6efd;
-
-            color: white;
+            height: 47px;
 
             border: none;
 
-            border-radius: 6px;
+            border-radius: 9px;
 
-            font-size: 15px;
+            background: #2563eb;
+
+            color: #ffffff;
+
+            font-size: 14px;
+
+            font-weight: 600;
 
             cursor: pointer;
+
+            transition:
+                background 0.2s,
+                transform 0.1s;
         }
 
 
-        button:disabled {
-            background: #999;
+        .submit-button:hover {
+
+            background: #1d4ed8;
         }
 
+
+        .submit-button:active {
+
+            transform: translateY(1px);
+        }
+
+
+        .submit-button:disabled {
+
+            background: #9aa4b2;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+
+        /* ---------------------------------------
+           MESSAGE
+        --------------------------------------- */
 
         #message {
+
             margin-top: 18px;
 
-            padding: 12px;
+            padding: 12px 14px;
 
-            border-radius: 6px;
+            border-radius: 9px;
+
+            font-size: 13px;
+
+            line-height: 1.45;
 
             text-align: center;
 
@@ -117,17 +389,81 @@
         }
 
 
-        .success {
-            background: #d1e7dd;
+        #message.success {
 
-            color: #0f5132;
+            display: block;
+
+            background: #ecfdf3;
+
+            color: #087443;
+
+            border: 1px solid #c8f0da;
         }
 
 
-        .error {
-            background: #f8d7da;
+        #message.error {
 
-            color: #842029;
+            display: block;
+
+            background: #fff4f2;
+
+            color: #c4321d;
+
+            border: 1px solid #ffd6cf;
+        }
+
+
+        /* ---------------------------------------
+           FOOTER
+        --------------------------------------- */
+
+        .card-footer {
+
+            padding: 15px 30px;
+
+            border-top: 1px solid #edf0f4;
+
+            background: #fafbfc;
+
+            text-align: center;
+
+            font-size: 11px;
+
+            color: #8a93a3;
+        }
+
+
+        /* ---------------------------------------
+           MOBILE
+        --------------------------------------- */
+
+        @media (max-width: 480px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .card-header {
+                padding: 24px 22px 20px;
+            }
+
+            .network-status {
+                margin-left: 22px;
+                margin-right: 22px;
+            }
+
+            .form-container {
+                padding: 24px 22px 25px;
+            }
+
+            .card-footer {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
         }
 
     </style>
@@ -138,62 +474,147 @@
 <body>
 
 
-<div class="box">
-
-    <h2>
-        Intern Attendance
-    </h2>
+<div class="attendance-card">
 
 
-    <form id="attendanceForm">
+    <!-- HEADER -->
+
+    <div class="card-header">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <p class="brand-title">
+                    Daily Attendance
+                </p>
+
+                <p class="brand-subtitle">
+                    Intern Attendance Portal
+                </p>
+
+            </div>
+
+        </div>
 
 
-        <label>
-            Employee ID
-        </label>
+        <h1>
+            Mark Attendance
+        </h1>
 
-        <input
-            type="number"
-            id="employeeId"
-            required
-        >
+        <p class="description">
+            Enter your registered details and today's exit time.
+        </p>
 
-
-        <label>
-            Email
-        </label>
-
-        <input
-            type="email"
-            id="email"
-            required
-        >
+    </div>
 
 
-        <label>
-            Exit Time
-        </label>
+    <!-- NETWORK STATUS -->
 
-        <input
-            type="text"
-            id="exitTime"
-            placeholder="Example: 06:30 PM"
-            required
-        >
+    <div
+        id="networkStatus"
+        class="network-status checking"
+    >
 
+        <span class="status-dot"></span>
 
-        <button
-            type="submit"
-            id="submitButton"
-        >
-            Submit
-        </button>
+        <span id="networkText">
+            Checking network connection...
+        </span>
+
+    </div>
 
 
-    </form>
+    <!-- FORM -->
+
+    <div class="form-container">
 
 
-    <div id="message"></div>
+        <form id="attendanceForm">
+
+
+            <!-- EMPLOYEE ID -->
+
+            <div class="form-group">
+
+                <label for="employeeId">
+                    Employee ID
+                </label>
+
+                <input
+                    type="number"
+                    id="employeeId"
+                    placeholder="Enter employee ID"
+                    required
+                >
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter registered email"
+                    required
+                >
+
+            </div>
+
+
+            <!-- EXIT TIME -->
+
+            <div class="form-group">
+
+                <label for="exitTime">
+                    Exit Time
+                </label>
+
+                <input
+                    type="text"
+                    id="exitTime"
+                    placeholder="Example: 06:30 PM"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                id="submitButton"
+                class="submit-button"
+            >
+                Submit Attendance
+            </button>
+
+
+            <!-- ONLY MESSAGE AREA -->
+
+            <div id="message"></div>
+
+
+        </form>
+
+    </div>
+
+
+    <div class="card-footer">
+
+        Attendance can be marked only from the company network.
+
+    </div>
 
 
 </div>
@@ -203,13 +624,17 @@
 <script>
 
 
+/* =====================================================
+   API
+===================================================== */
+
 const API =
     "http://192.168.1.5/DailyAttendancebackend/intern_attendance.php";
 
 
-// --------------------------------------------------
-// LocalStorage keys
-// --------------------------------------------------
+/* =====================================================
+   LOCAL STORAGE
+===================================================== */
 
 const SAVED_ID =
     "intern_attendance_id";
@@ -218,9 +643,9 @@ const SAVED_EMAIL =
     "intern_attendance_email";
 
 
-// --------------------------------------------------
-// Get fields
-// --------------------------------------------------
+/* =====================================================
+   ELEMENTS
+===================================================== */
 
 const employeeId =
     document.getElementById("employeeId");
@@ -240,10 +665,85 @@ const button =
 const message =
     document.getElementById("message");
 
+const networkStatus =
+    document.getElementById("networkStatus");
 
-// --------------------------------------------------
-// Load saved employee
-// --------------------------------------------------
+const networkText =
+    document.getElementById("networkText");
+
+
+/* =====================================================
+   NETWORK CHECK
+===================================================== */
+
+async function checkNetwork() {
+
+    networkStatus.className =
+        "network-status checking";
+
+    networkText.innerText =
+        "Checking network connection...";
+
+
+    try {
+
+        /*
+         * We check your local PHP server.
+         *
+         * If 192.168.1.5 is accessible,
+         * the device is connected to the network
+         * where your attendance server is available.
+         */
+
+        const response =
+            await fetch(
+                API,
+                {
+                    method: "OPTIONS",
+
+                    cache: "no-store"
+                }
+            );
+
+
+        /*
+         * Server responded.
+         */
+
+        networkStatus.className =
+            "network-status connected";
+
+        networkText.innerText =
+            "Connected to company network";
+
+        button.disabled =
+            false;
+
+
+        return true;
+
+
+    } catch (error) {
+
+        networkStatus.className =
+            "network-status disconnected";
+
+        networkText.innerText =
+            "Connect to company Wi-Fi to mark attendance";
+
+        button.disabled =
+            true;
+
+
+        return false;
+    }
+
+}
+
+
+/* =====================================================
+   LOAD SAVED INTERN
+===================================================== */
 
 const savedId =
     localStorage.getItem(SAVED_ID);
@@ -262,10 +762,7 @@ if (savedId && savedEmail) {
 
 
     /*
-     * Lock ID and email.
-     *
-     * Intern cannot simply change
-     * the browser to another employee.
+     * Lock these fields.
      */
 
     employeeId.disabled =
@@ -276,9 +773,31 @@ if (savedId && savedEmail) {
 }
 
 
-// --------------------------------------------------
-// Submit
-// --------------------------------------------------
+/* =====================================================
+   INITIAL NETWORK CHECK
+===================================================== */
+
+checkNetwork();
+
+
+/*
+ * Check again when page becomes active.
+ */
+
+window.addEventListener(
+    "online",
+    checkNetwork
+);
+
+window.addEventListener(
+    "offline",
+    checkNetwork
+);
+
+
+/* =====================================================
+   FORM SUBMIT
+===================================================== */
 
 form.addEventListener(
     "submit",
@@ -286,6 +805,24 @@ form.addEventListener(
 
         event.preventDefault();
 
+
+        /*
+         * Verify network first.
+         */
+
+        const connected =
+            await checkNetwork();
+
+
+        if (!connected) {
+
+            return;
+        }
+
+
+        /*
+         * Clear previous message.
+         */
 
         message.style.display =
             "none";
@@ -347,11 +884,14 @@ form.addEventListener(
                 await fetch(
                     API,
                     {
+
                         method: "POST",
 
                         headers: {
+
                             "Content-Type":
                                 "application/json"
+
                         },
 
                         body: JSON.stringify({
@@ -366,6 +906,7 @@ form.addEventListener(
                                 exit
 
                         })
+
                     }
                 );
 
@@ -377,9 +918,9 @@ form.addEventListener(
             if (result.success) {
 
 
-                // ------------------------------------------
-                // Remember this intern's ID + email
-                // ------------------------------------------
+                /*
+                 * Remember intern.
+                 */
 
                 localStorage.setItem(
                     SAVED_ID,
@@ -392,27 +933,40 @@ form.addEventListener(
                 );
 
 
+                /*
+                 * Lock ID and email.
+                 */
+
+                employeeId.disabled =
+                    true;
+
+                email.disabled =
+                    true;
+
+
+                /*
+                 * Only message.
+                 */
+
                 showMessage(
                     "Attendance successfully added.",
                     true
                 );
 
 
-                /*
-                 * Clear only exit time.
-                 *
-                 * ID + email remain stored.
-                 */
-
                 exitTime.value =
                     "";
 
+
+                button.innerText =
+                    "Attendance Added";
 
                 button.disabled =
                     true;
 
 
             } else {
+
 
                 showMessage(
                     result.message,
@@ -424,14 +978,14 @@ form.addEventListener(
                     false;
 
                 button.innerText =
-                    "Submit";
+                    "Submit Attendance";
             }
 
 
         } catch (error) {
 
             showMessage(
-                "Unable to connect to server.",
+                "Unable to connect to attendance server.",
                 false
             );
 
@@ -440,16 +994,16 @@ form.addEventListener(
                 false;
 
             button.innerText =
-                "Submit";
+                "Submit Attendance";
         }
 
     }
 );
 
 
-// --------------------------------------------------
-// Message
-// --------------------------------------------------
+/* =====================================================
+   MESSAGE
+===================================================== */
 
 function showMessage(
     text,
@@ -467,6 +1021,7 @@ function showMessage(
     message.style.display =
         "block";
 }
+
 
 </script>
 
