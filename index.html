@@ -5,11 +5,17 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Intern Attendance</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
 </head>
 
@@ -17,655 +23,1165 @@
 <body>
 
 
-    <div class="page">
+<div class="page">
+
+    <div class="attendance-card">
 
 
-        <div class="attendance-card">
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <div class="logo">
+                ✓
+            </div>
+
+            <h1>
+                Intern Attendance
+            </h1>
+
+            <p>
+                Daily Attendance System
+            </p>
+
+        </div>
 
 
-            <!-- HEADER -->
 
-            <div class="header">
+        <!-- NETWORK -->
 
-                <div class="logo">
-                    ✓
-                </div>
+        <div
+            id="networkStatus"
+            class="network checking"
+        >
+            Checking company Wi-Fi...
+        </div>
 
-                <h1>
-                    Intern Attendance
-                </h1>
 
-                <p>
-                    Daily Attendance System
-                </p>
+
+        <!-- ERROR -->
+
+        <div
+            id="errorMessage"
+            class="message error"
+        >
+        </div>
+
+
+
+        <!-- SUCCESS -->
+
+        <div
+            id="successMessage"
+            class="message success"
+        >
+        </div>
+
+
+
+        <!-- LOGIN / IDENTIFICATION -->
+
+        <div id="identitySection">
+
+
+            <div class="form-group">
+
+                <label for="employeeId">
+                    Employee ID
+                </label>
+
+                <input
+                    type="number"
+                    id="employeeId"
+                    placeholder="Enter Employee ID"
+                    autocomplete="off"
+                >
 
             </div>
 
 
 
-            <!-- NETWORK STATUS -->
+            <div class="form-group">
 
-            <div id="networkStatus" class="network checking">
+                <label for="email">
+                    Email Address
+                </label>
 
-                Checking company Wi-Fi...
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter registered email"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+
+            <button
+                type="button"
+                id="checkButton"
+            >
+                Check Attendance
+            </button>
+
+
+        </div>
+
+
+
+        <!-- ATTENDANCE SECTION -->
+
+        <div
+            id="attendanceSection"
+            class="attendance-section"
+        >
+
+
+            <div class="employee-info">
+
+                <span>
+                    Employee
+                </span>
+
+                <strong id="employeeName">
+                    -
+                </strong>
 
             </div>
 
 
 
-            <!-- ERROR -->
+            <div class="date-box">
 
-            <div id="errorMessage" class="message error">
+                <div>
+
+                    <span>
+                        Today's Date
+                    </span>
+
+                    <strong id="todayDate">
+                        -
+                    </strong>
+
+                </div>
+
+                <div class="lock">
+                    🔒
+                </div>
+
             </div>
 
 
 
-            <!-- SUCCESS -->
+            <!-- ENTRY -->
 
-            <div id="successMessage" class="message success">
+            <div
+                id="entryInfo"
+                class="time-card"
+            >
+
+                <span>
+                    Entry Time
+                </span>
+
+                <strong id="entryTime">
+                    Not marked
+                </strong>
+
+            </div>
+
+
+
+            <!-- EXIT -->
+
+            <div
+                id="exitInfo"
+                class="time-card"
+            >
+
+                <span>
+                    Exit Time
+                </span>
+
+                <strong id="exitTime">
+                    Not marked
+                </strong>
+
             </div>
 
 
 
-            <!-- FORM -->
+            <!-- ENTRY BUTTON -->
 
-            <form id="attendanceForm">
-
-
-                <!-- Employee ID -->
-
-                <div class="form-group">
-
-                    <label for="employeeId">
-                        Employee ID
-                    </label>
-
-                    <input type="number" id="employeeId" placeholder="Enter Employee ID" required autocomplete="off">
-
-                </div>
+            <button
+                type="button"
+                id="entryButton"
+                class="entry-button"
+            >
+                Mark Entry
+            </button>
 
 
 
-                <!-- Email -->
+            <!-- EXIT BUTTON -->
 
-                <div class="form-group">
-
-                    <label for="email">
-                        Email
-                    </label>
-
-                    <input type="email" id="email" placeholder="Enter your registered email" required
-                        autocomplete="off">
-
-                </div>
+            <button
+                type="button"
+                id="exitButton"
+                class="exit-button"
+            >
+                Mark Exit
+            </button>
 
 
 
-                <!-- Phone -->
+            <!-- FINISHED -->
 
-                <div class="form-group">
+            <div
+                id="completedMessage"
+                class="completed"
+            >
 
-                    <label for="phone">
-                        Phone Number
-                    </label>
-
-                    <input type="tel" id="phone" placeholder="Enter your registered phone" required autocomplete="off">
-
-                </div>
-
-
-
-                <!-- TODAY -->
-
-                <div class="today-box">
-
-                    <div>
-
-                        <span>
-                            Attendance Date
-                        </span>
-
-                        <strong id="todayDate">
-                            --
-                        </strong>
-
-                    </div>
-
-
-                    <div class="today-lock">
-                        🔒
-                    </div>
-
-                </div>
-
-
-
-                <!-- BUTTON -->
-
-                <button type="submit" id="submitButton">
-
-                    Mark Today's Attendance
-
-                </button>
-
-
-            </form>
-
-
-
-            <!-- FOOTER -->
-
-            <div class="footer">
-
-                <p>
-                    Attendance is available only from company Wi-Fi.
-                </p>
-
-                <p>
-                    One attendance is allowed per day.
-                </p>
+                ✓ Today's attendance completed
 
             </div>
 
+
+
+            <!-- CHANGE USER -->
+
+            <button
+                type="button"
+                id="changeUserButton"
+                class="change-button"
+            >
+                Change Employee
+            </button>
+
+
+        </div>
+
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            <p>
+                Attendance can only be marked from company Wi-Fi.
+            </p>
+
+            <p>
+                Entry and exit are recorded using server time.
+            </p>
 
         </div>
 
 
     </div>
 
+</div>
 
 
-    <script>
+
+<script>
+
+
+/*
+|--------------------------------------------------------------------------
+| API
+|--------------------------------------------------------------------------
+*/
+
+const API_URL =
+    "http://192.168.1.5/DailyAttendancebackend/intern_attendance.php";
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Elements
+|--------------------------------------------------------------------------
+*/
+
+const employeeIdInput =
+    document.getElementById('employeeId');
+
+const emailInput =
+    document.getElementById('email');
+
+const checkButton =
+    document.getElementById('checkButton');
+
+const entryButton =
+    document.getElementById('entryButton');
+
+const exitButton =
+    document.getElementById('exitButton');
+
+const changeUserButton =
+    document.getElementById('changeUserButton');
+
+const identitySection =
+    document.getElementById('identitySection');
+
+const attendanceSection =
+    document.getElementById('attendanceSection');
+
+const employeeName =
+    document.getElementById('employeeName');
+
+const todayDate =
+    document.getElementById('todayDate');
+
+const entryTime =
+    document.getElementById('entryTime');
+
+const exitTime =
+    document.getElementById('exitTime');
+
+const completedMessage =
+    document.getElementById('completedMessage');
+
+const networkStatus =
+    document.getElementById('networkStatus');
+
+const errorMessage =
+    document.getElementById('errorMessage');
+
+const successMessage =
+    document.getElementById('successMessage');
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Current employee
+|--------------------------------------------------------------------------
+*/
+
+let currentEmployeeId = null;
+
+let currentEmail = null;
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Show today's date
+|--------------------------------------------------------------------------
+*/
+
+function showToday() {
+
+    const now = new Date();
+
+    const date =
+        now.toLocaleDateString(
+            'en-IN',
+            {
+                timeZone: 'Asia/Kolkata',
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            }
+        );
+
+    todayDate.textContent = date;
+}
+
+
+showToday();
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Clear messages
+|--------------------------------------------------------------------------
+*/
+
+function clearMessages() {
+
+    errorMessage.style.display =
+        'none';
+
+    successMessage.style.display =
+        'none';
+
+    errorMessage.innerHTML =
+        '';
+
+    successMessage.innerHTML =
+        '';
+}
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Error
+|--------------------------------------------------------------------------
+*/
+
+function showError(message) {
+
+    errorMessage.innerHTML =
+        message;
+
+    errorMessage.style.display =
+        'block';
+}
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Success
+|--------------------------------------------------------------------------
+*/
+
+function showSuccess(message) {
+
+    successMessage.innerHTML =
+        message;
+
+    successMessage.style.display =
+        'block';
+}
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Check company network
+|--------------------------------------------------------------------------
+*/
+
+async function checkNetwork() {
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL,
+                {
+                    method: 'POST',
+
+                    headers: {
+                        'Content-Type':
+                            'application/json'
+                    },
+
+                    body: JSON.stringify({})
+                }
+            );
+
+
+        const result =
+            await response.json();
 
 
         /*
-        |--------------------------------------------------------------------------
-        | API URL
-        |--------------------------------------------------------------------------
+        |--------------------------------------------------------------
+        | Company network accepted
+        |--------------------------------------------------------------
         */
 
-        const API_URL =
-            "http://192.168.1.5/DailyAttendancebackend/intern_attendance.php";
+        if (
+            result.error ===
+            'Employee ID is required.'
+        ) {
 
+            networkStatus.textContent =
+                '✓ Connected to company Wi-Fi';
+
+            networkStatus.className =
+                'network connected';
+
+            checkButton.disabled =
+                false;
+
+            return true;
+        }
 
 
         /*
-        |--------------------------------------------------------------------------
-        | Elements
-        |--------------------------------------------------------------------------
+        |--------------------------------------------------------------
+        | Company network rejected
+        |--------------------------------------------------------------
         */
 
-        const form =
-            document.getElementById('attendanceForm');
+        if (
+            result.error &&
+            result.error.includes(
+                'company Wi-Fi'
+            )
+        ) {
+
+            networkStatus.textContent =
+                '✕ Connect to company Wi-Fi';
+
+            networkStatus.className =
+                'network disconnected';
+
+            checkButton.disabled =
+                true;
+
+            return false;
+        }
+
+
+        networkStatus.textContent =
+            '✓ Company server available';
+
+        networkStatus.className =
+            'network connected';
+
+        checkButton.disabled =
+            false;
+
+        return true;
+
+
+    } catch (error) {
+
+        networkStatus.textContent =
+            '✕ Attendance server unavailable';
+
+        networkStatus.className =
+            'network disconnected';
+
+        checkButton.disabled =
+            true;
+
+        return false;
+    }
+
+}
+
+
+
+/*
+|--------------------------------------------------------------------------
+| CHECK ATTENDANCE
+|--------------------------------------------------------------------------
+*/
+
+checkButton.addEventListener(
+    'click',
+    async function() {
+
+        clearMessages();
+
 
         const employeeId =
-            document.getElementById('employeeId');
+            employeeIdInput.value.trim();
 
         const email =
-            document.getElementById('email');
-
-        const phone =
-            document.getElementById('phone');
-
-        const submitButton =
-            document.getElementById('submitButton');
-
-        const networkStatus =
-            document.getElementById('networkStatus');
-
-        const errorMessage =
-            document.getElementById('errorMessage');
-
-        const successMessage =
-            document.getElementById('successMessage');
+            emailInput.value.trim();
 
 
+        if (!employeeId) {
 
-        /*
-        |--------------------------------------------------------------------------
-        | Show today's date
-        |--------------------------------------------------------------------------
-        */
+            showError(
+                'Please enter your Employee ID.'
+            );
 
-        function showToday() {
+            return;
+        }
 
-            const date =
-                new Date();
 
-            const today =
-                date.toLocaleDateString(
-                    'en-IN',
+        if (!email) {
+
+            showError(
+                'Please enter your email address.'
+            );
+
+            return;
+        }
+
+
+        checkButton.disabled =
+            true;
+
+        checkButton.textContent =
+            'Checking...';
+
+
+        try {
+
+            const response =
+                await fetch(
+                    API_URL,
                     {
-                        timeZone: 'Asia/Kolkata',
-                        day: '2-digit',
-                        month: '2-digit',
-                        year: 'numeric'
+                        method: 'POST',
+
+                        headers: {
+                            'Content-Type':
+                                'application/json'
+                        },
+
+                        body: JSON.stringify({
+
+                            employee_id:
+                                parseInt(employeeId),
+
+                            email:
+                                email,
+
+                            action:
+                                'status'
+
+                        })
                     }
                 );
 
-            document
-                .getElementById('todayDate')
-                .textContent = today;
-        }
+
+            const result =
+                await response.json();
 
 
-        showToday();
+            if (!result.success) {
 
+                showError(
+                    result.error ||
+                    'Unable to verify employee.'
+                );
 
+                checkButton.disabled =
+                    false;
 
-        /*
-        |--------------------------------------------------------------------------
-        | Check company network
-        |--------------------------------------------------------------------------
-        |
-        | We send a request to PHP.
-        |
-        | PHP checks the actual client IP.
-        |
-        */
+                checkButton.textContent =
+                    'Check Attendance';
 
-        async function checkNetwork() {
-
-            try {
-
-                const response =
-                    await fetch(
-                        API_URL,
-                        {
-                            method: 'POST',
-
-                            headers: {
-                                'Content-Type':
-                                    'application/json'
-                            },
-
-                            body: JSON.stringify({})
-                        }
-                    );
-
-
-                const result =
-                    await response.json();
-
-
-                /*
-                |--------------------------------------------------------------
-                | This means the request reached PHP and PHP accepted
-                | the company network but employee ID was missing.
-                |--------------------------------------------------------------
-                */
-
-                if (
-                    result.error ===
-                    'Employee ID is required.'
-                ) {
-
-                    networkStatus.textContent =
-                        '✓ Connected to company Wi-Fi';
-
-                    networkStatus.className =
-                        'network connected';
-
-                    submitButton.disabled = false;
-
-                    return;
-                }
-
-
-                /*
-                |--------------------------------------------------------------
-                | Network rejected
-                |--------------------------------------------------------------
-                */
-
-                if (
-                    result.error &&
-                    result.error.includes(
-                        'company Wi-Fi'
-                    )
-                ) {
-
-                    networkStatus.textContent =
-                        '✕ Connect to company Wi-Fi';
-
-                    networkStatus.className =
-                        'network disconnected';
-
-                    submitButton.disabled = true;
-
-                    return;
-                }
-
-
-                /*
-                |--------------------------------------------------------------
-                | Server reachable
-                |--------------------------------------------------------------
-                */
-
-                networkStatus.textContent =
-                    '✓ Company network available';
-
-                networkStatus.className =
-                    'network connected';
-
-                submitButton.disabled = false;
-
-
-            } catch (error) {
-
-                networkStatus.textContent =
-                    '✕ Attendance server unavailable';
-
-                networkStatus.className =
-                    'network disconnected';
-
-                submitButton.disabled = true;
-
+                return;
             }
 
+
+            /*
+            |----------------------------------------------------------
+            | Store employee
+            |----------------------------------------------------------
+            */
+
+            currentEmployeeId =
+                parseInt(employeeId);
+
+            currentEmail =
+                email;
+
+
+            /*
+            |----------------------------------------------------------
+            | Show employee information
+            |----------------------------------------------------------
+            */
+
+            employeeName.textContent =
+                result.data.name;
+
+
+            identitySection.style.display =
+                'none';
+
+            attendanceSection.style.display =
+                'block';
+
+
+            /*
+            |----------------------------------------------------------
+            | Update attendance UI
+            |----------------------------------------------------------
+            */
+
+            updateAttendanceUI(result);
+
+
+        } catch (error) {
+
+            showError(
+                'Unable to connect to attendance server.'
+            );
+
+            checkButton.disabled =
+                false;
+
+            checkButton.textContent =
+                'Check Attendance';
+        }
+
+    }
+);
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Update Attendance UI
+|--------------------------------------------------------------------------
+*/
+
+function updateAttendanceUI(result) {
+
+    clearMessages();
+
+
+    /*
+    |----------------------------------------------------------------------
+    | No attendance today
+    |----------------------------------------------------------------------
+    */
+
+    if (!result.attendance_exists) {
+
+        entryTime.textContent =
+            'Not marked';
+
+        exitTime.textContent =
+            'Not available yet';
+
+
+        entryButton.style.display =
+            'block';
+
+        exitButton.style.display =
+            'none';
+
+        completedMessage.style.display =
+            'none';
+
+
+        return;
+    }
+
+
+    /*
+    |----------------------------------------------------------------------
+    | Attendance exists
+    |----------------------------------------------------------------------
+    */
+
+    entryTime.textContent =
+        formatTime(result.data.in_time);
+
+
+    /*
+    |----------------------------------------------------------------------
+    | Exit already marked
+    |----------------------------------------------------------------------
+    */
+
+    if (
+        result.data.out_time &&
+        result.data.out_time !== ''
+    ) {
+
+        exitTime.textContent =
+            formatTime(
+                result.data.out_time
+            );
+
+
+        entryButton.style.display =
+            'none';
+
+        exitButton.style.display =
+            'none';
+
+        completedMessage.style.display =
+            'block';
+
+        return;
+    }
+
+
+    /*
+    |----------------------------------------------------------------------
+    | Entry exists but exit not marked
+    |----------------------------------------------------------------------
+    */
+
+    exitTime.textContent =
+        'Not marked';
+
+
+    entryButton.style.display =
+        'none';
+
+    exitButton.style.display =
+        'block';
+
+    completedMessage.style.display =
+        'none';
+}
+
+
+
+/*
+|--------------------------------------------------------------------------
+| MARK ENTRY
+|--------------------------------------------------------------------------
+*/
+
+entryButton.addEventListener(
+    'click',
+    async function() {
+
+        clearMessages();
+
+
+        entryButton.disabled =
+            true;
+
+        entryButton.textContent =
+            'Saving Entry...';
+
+
+        try {
+
+            const result =
+                await sendAttendance(
+                    'entry'
+                );
+
+
+            if (!result.success) {
+
+                showError(
+                    result.error ||
+                    'Unable to mark entry.'
+                );
+
+                entryButton.disabled =
+                    false;
+
+                entryButton.textContent =
+                    'Mark Entry';
+
+                return;
+            }
+
+
+            /*
+            |----------------------------------------------------------
+            | Entry successful
+            |----------------------------------------------------------
+            */
+
+            entryTime.textContent =
+                formatTime(
+                    result.data.in_time
+                );
+
+
+            entryButton.style.display =
+                'none';
+
+
+            exitButton.style.display =
+                'block';
+
+
+            exitButton.disabled =
+                false;
+
+
+            showSuccess(
+                `Entry marked successfully at ${formatTime(result.data.in_time)}.`
+            );
+
+
+        } catch (error) {
+
+            showError(
+                'Unable to connect to attendance server.'
+            );
+
+            entryButton.disabled =
+                false;
+
+            entryButton.textContent =
+                'Mark Entry';
+        }
+
+    }
+);
+
+
+
+/*
+|--------------------------------------------------------------------------
+| MARK EXIT
+|--------------------------------------------------------------------------
+*/
+
+exitButton.addEventListener(
+    'click',
+    async function() {
+
+        clearMessages();
+
+
+        const confirmed =
+            confirm(
+                'Are you sure you want to mark your exit time?'
+            );
+
+
+        if (!confirmed) {
+
+            return;
         }
 
 
+        exitButton.disabled =
+            true;
 
-        /*
-        |--------------------------------------------------------------------------
-        | Submit attendance
-        |--------------------------------------------------------------------------
-        */
+        exitButton.textContent =
+            'Saving Exit...';
 
-        form.addEventListener(
-            'submit',
-            async function (event) {
 
-                event.preventDefault();
+        try {
 
+            const result =
+                await sendAttendance(
+                    'exit'
+                );
 
-                errorMessage.style.display =
-                    'none';
 
-                successMessage.style.display =
-                    'none';
+            if (!result.success) {
 
+                showError(
+                    result.error ||
+                    'Unable to mark exit.'
+                );
 
-                const id =
-                    employeeId.value.trim();
+                exitButton.disabled =
+                    false;
 
-                const emailValue =
-                    email.value.trim();
+                exitButton.textContent =
+                    'Mark Exit';
 
-                const phoneValue =
-                    phone.value.trim();
+                return;
+            }
 
 
-                /*
-                |--------------------------------------------------------------
-                | Frontend validation
-                |--------------------------------------------------------------
-                */
+            /*
+            |----------------------------------------------------------
+            | Exit successful
+            |----------------------------------------------------------
+            */
 
-                if (!id) {
+            exitTime.textContent =
+                formatTime(
+                    result.data.out_time
+                );
 
-                    showError(
-                        'Please enter your Employee ID.'
-                    );
 
-                    return;
-                }
+            exitButton.style.display =
+                'none';
 
 
-                if (!emailValue) {
+            completedMessage.style.display =
+                'block';
 
-                    showError(
-                        'Please enter your email.'
-                    );
 
-                    return;
-                }
+            showSuccess(
+                `Exit marked successfully at ${formatTime(result.data.out_time)}.`
+            );
 
 
-                if (!phoneValue) {
+        } catch (error) {
 
-                    showError(
-                        'Please enter your phone number.'
-                    );
+            showError(
+                'Unable to connect to attendance server.'
+            );
 
-                    return;
-                }
+            exitButton.disabled =
+                false;
 
+            exitButton.textContent =
+                'Mark Exit';
+        }
 
-                /*
-                |--------------------------------------------------------------
-                | Disable button
-                |--------------------------------------------------------------
-                */
+    }
+);
 
-                submitButton.disabled = true;
 
-                submitButton.textContent =
-                    'Checking & Saving...';
 
+/*
+|--------------------------------------------------------------------------
+| Send attendance request
+|--------------------------------------------------------------------------
+*/
 
-                try {
+async function sendAttendance(action) {
 
-                    const response =
-                        await fetch(
-                            API_URL,
-                            {
-                                method: 'POST',
+    const response =
+        await fetch(
+            API_URL,
+            {
+                method: 'POST',
 
-                                headers: {
-                                    'Content-Type':
-                                        'application/json'
-                                },
+                headers: {
+                    'Content-Type':
+                        'application/json'
+                },
 
-                                body: JSON.stringify({
+                body: JSON.stringify({
 
-                                    employee_id:
-                                        parseInt(id),
+                    employee_id:
+                        currentEmployeeId,
 
-                                    email:
-                                        emailValue,
+                    email:
+                        currentEmail,
 
-                                    phone:
-                                        phoneValue
+                    action:
+                        action
 
-                                })
-                            }
-                        );
-
-
-                    const result =
-                        await response.json();
-
-
-                    /*
-                    |----------------------------------------------------------
-                    | SUCCESS
-                    |----------------------------------------------------------
-                    */
-
-                    if (result.success) {
-
-                        showSuccess(
-                            `
-                    <strong>
-                        ✓ Attendance Marked Successfully
-                    </strong>
-
-                    <br><br>
-
-                    Name:
-                    ${result.data.name}
-
-                    <br>
-
-                    Date:
-                    ${result.data.date}
-
-                    <br>
-
-                    In Time:
-                    ${formatTime(result.data.in_time)}
-
-                    <br>
-
-                    Status:
-                    ${result.data.status}
-                    `
-                        );
-
-
-                        /*
-                        |------------------------------------------------------
-                        | Lock the form after successful attendance
-                        |------------------------------------------------------
-                        */
-
-                        employeeId.disabled = true;
-
-                        email.disabled = true;
-
-                        phone.disabled = true;
-
-                        submitButton.textContent =
-                            '✓ Attendance Marked';
-
-
-                        return;
-                    }
-
-
-                    /*
-                    |----------------------------------------------------------
-                    | ERROR
-                    |----------------------------------------------------------
-                    */
-
-                    showError(
-                        result.error ||
-                        'Unable to mark attendance.'
-                    );
-
-
-                    submitButton.disabled = false;
-
-                    submitButton.textContent =
-                        "Mark Today's Attendance";
-
-
-                } catch (error) {
-
-                    showError(
-                        'Unable to connect to attendance server.'
-                    );
-
-
-                    submitButton.disabled = false;
-
-                    submitButton.textContent =
-                        "Mark Today's Attendance";
-                }
-
+                })
             }
         );
 
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | Error message
-        |--------------------------------------------------------------------------
-        */
-
-        function showError(message) {
-
-            errorMessage.innerHTML =
-                message;
-
-            errorMessage.style.display =
-                'block';
-        }
+    return await response.json();
+}
 
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | Success message
-        |--------------------------------------------------------------------------
-        */
+/*
+|--------------------------------------------------------------------------
+| Change employee
+|--------------------------------------------------------------------------
+*/
 
-        function showSuccess(message) {
+changeUserButton.addEventListener(
+    'click',
+    function() {
 
-            successMessage.innerHTML =
-                message;
+        currentEmployeeId =
+            null;
 
-            successMessage.style.display =
-                'block';
-        }
-
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Format time
-        |--------------------------------------------------------------------------
-        */
-
-        function formatTime(time) {
-
-            if (!time) {
-                return '-';
-            }
+        currentEmail =
+            null;
 
 
-            const parts =
-                time.split(':');
+        employeeIdInput.value =
+            '';
+
+        emailInput.value =
+            '';
 
 
-            let hour =
-                parseInt(parts[0]);
+        employeeName.textContent =
+            '-';
 
-            const minute =
-                parts[1];
+        entryTime.textContent =
+            'Not marked';
 
-
-            const second =
-                parts[2];
-
-
-            const ampm =
-                hour >= 12
-                    ? 'PM'
-                    : 'AM';
+        exitTime.textContent =
+            'Not marked';
 
 
-            hour =
-                hour % 12 || 12;
+        attendanceSection.style.display =
+            'none';
+
+        identitySection.style.display =
+            'block';
 
 
-            return (
-                hour +
-                ':' +
-                minute +
-                ':' +
-                second +
-                ' ' +
-                ampm
-            );
-        }
+        checkButton.disabled =
+            false;
+
+        checkButton.textContent =
+            'Check Attendance';
+
+
+        clearMessages();
+    }
+);
 
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | Initial network check
-        |--------------------------------------------------------------------------
-        */
+/*
+|--------------------------------------------------------------------------
+| Format time
+|--------------------------------------------------------------------------
+*/
 
-        checkNetwork();
+function formatTime(time) {
 
-    </script>
+    if (!time) {
+        return '-';
+    }
+
+
+    const parts =
+        time.split(':');
+
+
+    let hour =
+        parseInt(parts[0]);
+
+
+    const minute =
+        parts[1];
+
+
+    const second =
+        parts[2];
+
+
+    const ampm =
+        hour >= 12
+            ? 'PM'
+            : 'AM';
+
+
+    hour =
+        hour % 12 || 12;
+
+
+    return (
+        hour +
+        ':' +
+        minute +
+        ':' +
+        second +
+        ' ' +
+        ampm
+    );
+}
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Initial state
+|--------------------------------------------------------------------------
+*/
+
+attendanceSection.style.display =
+    'none';
+
+exitButton.style.display =
+    'none';
+
+completedMessage.style.display =
+    'none';
+
+
+/*
+|--------------------------------------------------------------------------
+| Check network on page load
+|--------------------------------------------------------------------------
+*/
+
+checkNetwork();
+
+</script>
 
 
 </body>
