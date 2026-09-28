@@ -12,152 +12,122 @@
 
     <title>Intern Attendance</title>
 
+
     <style>
 
-        * {
-            box-sizing: border-box;
-        }
-
         body {
-            margin: 0;
-            min-height: 100vh;
             font-family: Arial, sans-serif;
-            background: #f2f5f9;
+            background: #f3f4f6;
 
             display: flex;
             justify-content: center;
             align-items: center;
 
-            padding: 20px;
+            min-height: 100vh;
+
+            margin: 0;
         }
 
+
         .box {
-            width: 100%;
-            max-width: 400px;
+            width: 350px;
 
             background: white;
 
-            padding: 30px;
+            padding: 25px;
 
-            border-radius: 15px;
+            border-radius: 10px;
 
             box-shadow:
-                0 10px 30px rgba(0,0,0,0.10);
+                0 5px 20px rgba(0,0,0,0.1);
         }
+
 
         h2 {
             text-align: center;
             margin-bottom: 25px;
         }
 
+
         label {
             display: block;
-            margin-bottom: 7px;
+
+            margin-bottom: 6px;
 
             font-weight: bold;
-            font-size: 14px;
         }
+
 
         input {
             width: 100%;
 
-            padding: 12px;
+            padding: 11px;
+
+            margin-bottom: 18px;
 
             border: 1px solid #ccc;
 
-            border-radius: 7px;
+            border-radius: 6px;
 
-            margin-bottom: 18px;
+            box-sizing: border-box;
 
             font-size: 15px;
         }
 
+
         input:disabled {
-            background: #eee;
+            background: #eeeeee;
         }
+
 
         button {
             width: 100%;
 
-            padding: 13px;
-
-            border: none;
-
-            border-radius: 7px;
+            padding: 12px;
 
             background: #0d6efd;
 
             color: white;
 
-            font-size: 15px;
+            border: none;
 
-            font-weight: bold;
+            border-radius: 6px;
+
+            font-size: 15px;
 
             cursor: pointer;
         }
+
 
         button:disabled {
             background: #999;
         }
 
-        .info {
-            background: #f1f5f9;
 
-            padding: 15px;
+        #message {
+            margin-top: 18px;
 
-            border-radius: 8px;
+            padding: 12px;
 
-            margin-bottom: 20px;
+            border-radius: 6px;
+
+            text-align: center;
+
+            display: none;
         }
 
-        .info div {
-            margin-bottom: 8px;
-        }
 
         .success {
             background: #d1e7dd;
 
             color: #0f5132;
-
-            padding: 15px;
-
-            border-radius: 8px;
-
-            margin-top: 15px;
-
-            text-align: center;
         }
+
 
         .error {
             background: #f8d7da;
 
             color: #842029;
-
-            padding: 15px;
-
-            border-radius: 8px;
-
-            margin-top: 15px;
-
-            text-align: center;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .completed {
-            text-align: center;
-
-            padding: 20px;
-
-            background: #d1e7dd;
-
-            color: #0f5132;
-
-            border-radius: 10px;
-
-            font-weight: bold;
         }
 
     </style>
@@ -175,9 +145,8 @@
     </h2>
 
 
-    <!-- ID + EMAIL -->
+    <form id="attendanceForm">
 
-    <div id="loginSection">
 
         <label>
             Employee ID
@@ -186,7 +155,7 @@
         <input
             type="number"
             id="employeeId"
-            placeholder="Enter Employee ID"
+            required
         >
 
 
@@ -197,40 +166,8 @@
         <input
             type="email"
             id="email"
-            placeholder="Enter Email"
+            required
         >
-
-
-        <button
-            id="submitButton"
-            onclick="submitAttendance()"
-        >
-            Submit
-        </button>
-
-    </div>
-
-
-    <!-- ATTENDANCE -->
-
-    <div
-        id="attendanceSection"
-        class="hidden"
-    >
-
-        <div class="info">
-
-            <div>
-                <b>Name:</b>
-                <span id="name"></span>
-            </div>
-
-            <div>
-                <b>Entry:</b>
-                <span id="entry"></span>
-            </div>
-
-        </div>
 
 
         <label>
@@ -241,49 +178,22 @@
             type="text"
             id="exitTime"
             placeholder="Example: 06:30 PM"
+            required
         >
 
 
         <button
-            id="exitButton"
-            onclick="submitExit()"
+            type="submit"
+            id="submitButton"
         >
-            Save Exit Time
+            Submit
         </button>
 
-    </div>
+
+    </form>
 
 
-    <!-- SUCCESS -->
-
-    <div
-        id="success"
-        class="success hidden"
-    ></div>
-
-
-    <!-- ERROR -->
-
-    <div
-        id="error"
-        class="error hidden"
-    ></div>
-
-
-    <!-- COMPLETED -->
-
-    <div
-        id="completed"
-        class="completed hidden"
-    >
-
-        ✓ Attendance successfully completed.
-
-        <br><br>
-
-        You can close this page.
-
-    </div>
+    <div id="message"></div>
 
 
 </div>
@@ -293,34 +203,24 @@
 <script>
 
 
-/*
-|--------------------------------------------------------------------------
-| PHP API
-|--------------------------------------------------------------------------
-*/
-
 const API =
-    "http://192.168.1.5/DailyAttendancebackend/intern_attendance_simple.php";
+    "http://192.168.1.5/DailyAttendancebackend/intern_attendance.php";
 
 
-/*
-|--------------------------------------------------------------------------
-| Browser Storage
-|--------------------------------------------------------------------------
-*/
+// --------------------------------------------------
+// LocalStorage keys
+// --------------------------------------------------
 
-const STORAGE_ID =
-    "intern_attendance_employee_id";
+const SAVED_ID =
+    "intern_attendance_id";
 
-const STORAGE_EMAIL =
+const SAVED_EMAIL =
     "intern_attendance_email";
 
 
-/*
-|--------------------------------------------------------------------------
-| Elements
-|--------------------------------------------------------------------------
-*/
+// --------------------------------------------------
+// Get fields
+// --------------------------------------------------
 
 const employeeId =
     document.getElementById("employeeId");
@@ -328,591 +228,244 @@ const employeeId =
 const email =
     document.getElementById("email");
 
-const loginSection =
-    document.getElementById("loginSection");
+const exitTime =
+    document.getElementById("exitTime");
 
-const attendanceSection =
-    document.getElementById("attendanceSection");
+const form =
+    document.getElementById("attendanceForm");
 
-const nameElement =
-    document.getElementById("name");
+const button =
+    document.getElementById("submitButton");
 
-const entryElement =
-    document.getElementById("entry");
-
-const success =
-    document.getElementById("success");
-
-const error =
-    document.getElementById("error");
-
-const completed =
-    document.getElementById("completed");
+const message =
+    document.getElementById("message");
 
 
+// --------------------------------------------------
+// Load saved employee
+// --------------------------------------------------
 
-/*
-|--------------------------------------------------------------------------
-| PAGE LOAD
-|--------------------------------------------------------------------------
-*/
+const savedId =
+    localStorage.getItem(SAVED_ID);
 
-window.onload = function () {
+const savedEmail =
+    localStorage.getItem(SAVED_EMAIL);
 
-    const savedId =
-        localStorage.getItem(STORAGE_ID);
 
-    const savedEmail =
-        localStorage.getItem(STORAGE_EMAIL);
+if (savedId && savedEmail) {
+
+    employeeId.value =
+        savedId;
+
+    email.value =
+        savedEmail;
 
 
     /*
-    |----------------------------------------------------------------------
-    | Existing browser employee
-    |----------------------------------------------------------------------
-    */
+     * Lock ID and email.
+     *
+     * Intern cannot simply change
+     * the browser to another employee.
+     */
 
-    if (savedId && savedEmail) {
+    employeeId.disabled =
+        true;
 
-        employeeId.value =
-            savedId;
-
-        email.value =
-            savedEmail;
-
-        employeeId.disabled =
-            true;
-
-        email.disabled =
-            true;
+    email.disabled =
+        true;
+}
 
 
-        /*
-        | Automatically check today's attendance
-        */
+// --------------------------------------------------
+// Submit
+// --------------------------------------------------
 
-        checkExistingAttendance(
-            savedId,
-            savedEmail
-        );
-    }
+form.addEventListener(
+    "submit",
+    async function(event) {
 
-};
+        event.preventDefault();
 
 
-
-/*
-|--------------------------------------------------------------------------
-| CHECK EXISTING ATTENDANCE
-|--------------------------------------------------------------------------
-*/
-
-async function checkExistingAttendance(
-    id,
-    userEmail
-) {
-
-    try {
-
-        const response =
-            await fetch(API, {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
-
-                body: JSON.stringify({
-
-                    employee_id:
-                        Number(id),
-
-                    email:
-                        userEmail,
-
-                    exit_time:
-                        ""
-
-                })
-
-            });
+        message.style.display =
+            "none";
 
 
-        const result =
-            await response.json();
+        const id =
+            employeeId.value.trim();
+
+        const userEmail =
+            email.value.trim();
+
+        const exit =
+            exitTime.value.trim();
 
 
-        if (!result.success) {
+        if (!id) {
 
-            showError(
-                result.message
+            showMessage(
+                "Employee ID is required.",
+                false
             );
 
             return;
         }
 
 
-        showAttendance(
-            result
-        );
+        if (!userEmail) {
 
-
-    } catch (e) {
-
-        showError(
-            "Unable to connect to server."
-        );
-
-    }
-
-}
-
-
-
-/*
-|--------------------------------------------------------------------------
-| FIRST SUBMIT
-|--------------------------------------------------------------------------
-*/
-
-async function submitAttendance() {
-
-    clearMessages();
-
-
-    const id =
-        employeeId.value.trim();
-
-    const userEmail =
-        email.value.trim();
-
-
-    if (!id) {
-
-        showError(
-            "Please enter Employee ID."
-        );
-
-        return;
-    }
-
-
-    if (!userEmail) {
-
-        showError(
-            "Please enter Email."
-        );
-
-        return;
-    }
-
-
-    const button =
-        document.getElementById(
-            "submitButton"
-        );
-
-    button.disabled =
-        true;
-
-    button.innerText =
-        "Checking...";
-
-
-    try {
-
-        const response =
-            await fetch(API, {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
-
-                body: JSON.stringify({
-
-                    employee_id:
-                        Number(id),
-
-                    email:
-                        userEmail,
-
-                    exit_time:
-                        ""
-
-                })
-
-            });
-
-
-        const result =
-            await response.json();
-
-
-        if (!result.success) {
-
-            showError(
-                result.message
+            showMessage(
+                "Email is required.",
+                false
             );
+
+            return;
+        }
+
+
+        if (!exit) {
+
+            showMessage(
+                "Exit time is required.",
+                false
+            );
+
+            return;
+        }
+
+
+        button.disabled =
+            true;
+
+        button.innerText =
+            "Saving...";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    API,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            employee_id:
+                                Number(id),
+
+                            email:
+                                userEmail,
+
+                            exit_time:
+                                exit
+
+                        })
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (result.success) {
+
+
+                // ------------------------------------------
+                // Remember this intern's ID + email
+                // ------------------------------------------
+
+                localStorage.setItem(
+                    SAVED_ID,
+                    id
+                );
+
+                localStorage.setItem(
+                    SAVED_EMAIL,
+                    userEmail
+                );
+
+
+                showMessage(
+                    "Attendance successfully added.",
+                    true
+                );
+
+
+                /*
+                 * Clear only exit time.
+                 *
+                 * ID + email remain stored.
+                 */
+
+                exitTime.value =
+                    "";
+
+
+                button.disabled =
+                    true;
+
+
+            } else {
+
+                showMessage(
+                    result.message,
+                    false
+                );
+
+
+                button.disabled =
+                    false;
+
+                button.innerText =
+                    "Submit";
+            }
+
+
+        } catch (error) {
+
+            showMessage(
+                "Unable to connect to server.",
+                false
+            );
+
 
             button.disabled =
                 false;
 
             button.innerText =
                 "Submit";
-
-            return;
         }
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | SAVE EMPLOYEE IN BROWSER
-        |--------------------------------------------------------------------------
-        */
-
-        localStorage.setItem(
-            STORAGE_ID,
-            id
-        );
-
-        localStorage.setItem(
-            STORAGE_EMAIL,
-            userEmail
-        );
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | LOCK ID + EMAIL
-        |--------------------------------------------------------------------------
-        */
-
-        employeeId.disabled =
-            true;
-
-        email.disabled =
-            true;
-
-
-        showAttendance(
-            result
-        );
-
-
-    } catch (e) {
-
-        showError(
-            "Unable to connect to server."
-        );
-
-        button.disabled =
-            false;
-
-        button.innerText =
-            "Submit";
     }
+);
 
-}
 
+// --------------------------------------------------
+// Message
+// --------------------------------------------------
 
+function showMessage(
+    text,
+    success
+) {
 
-/*
-|--------------------------------------------------------------------------
-| SHOW ATTENDANCE
-|--------------------------------------------------------------------------
-*/
+    message.innerText =
+        text;
 
-function showAttendance(result) {
+    message.className =
+        success
+            ? "success"
+            : "error";
 
-    loginSection.classList.add(
-        "hidden"
-    );
-
-    attendanceSection.classList.remove(
-        "hidden"
-    );
-
-
-    nameElement.innerText =
-        result.name;
-
-
-    entryElement.innerText =
-        formatTime(
-            result.in_time
-        );
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Already completed
-    |--------------------------------------------------------------------------
-    */
-
-    if (
-        result.type ===
-        "COMPLETED"
-    ) {
-
-        attendanceSection.classList.add(
-            "hidden"
-        );
-
-        completed.classList.remove(
-            "hidden"
-        );
-
-        return;
-    }
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Entry created / already exists
-    |--------------------------------------------------------------------------
-    */
-
-    if (
-        result.type ===
-        "ENTRY" ||
-        result.type ===
-        "ENTRY_EXISTS"
-    ) {
-
-        showSuccess(
-            "Entry time successfully recorded."
-        );
-
-    }
-
-}
-
-
-
-/*
-|--------------------------------------------------------------------------
-| SAVE EXIT
-|--------------------------------------------------------------------------
-*/
-
-async function submitExit() {
-
-    clearMessages();
-
-
-    const id =
-        localStorage.getItem(
-            STORAGE_ID
-        );
-
-    const userEmail =
-        localStorage.getItem(
-            STORAGE_EMAIL
-        );
-
-    const exitTime =
-        document.getElementById(
-            "exitTime"
-        ).value.trim();
-
-
-    if (!exitTime) {
-
-        showError(
-            "Please enter exit time."
-        );
-
-        return;
-    }
-
-
-    const button =
-        document.getElementById(
-            "exitButton"
-        );
-
-    button.disabled =
-        true;
-
-    button.innerText =
-        "Saving...";
-
-
-    try {
-
-        const response =
-            await fetch(API, {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
-
-                body: JSON.stringify({
-
-                    employee_id:
-                        Number(id),
-
-                    email:
-                        userEmail,
-
-                    exit_time:
-                        exitTime
-
-                })
-
-            });
-
-
-        const result =
-            await response.json();
-
-
-        if (!result.success) {
-
-            showError(
-                result.message
-            );
-
-            button.disabled =
-                false;
-
-            button.innerText =
-                "Save Exit Time";
-
-            return;
-        }
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | FINAL SUCCESS
-        |--------------------------------------------------------------------------
-        */
-
-        attendanceSection.classList.add(
-            "hidden"
-        );
-
-        completed.classList.remove(
-            "hidden"
-        );
-
-
-        showSuccess(
-            "Attendance successfully completed."
-        );
-
-
-    } catch (e) {
-
-        showError(
-            "Unable to connect to server."
-        );
-
-        button.disabled =
-            false;
-
-        button.innerText =
-            "Save Exit Time";
-    }
-
-}
-
-
-
-/*
-|--------------------------------------------------------------------------
-| FORMAT TIME
-|--------------------------------------------------------------------------
-*/
-
-function formatTime(time) {
-
-    if (!time) {
-        return "-";
-    }
-
-
-    const parts =
-        time.split(":");
-
-
-    let hour =
-        Number(parts[0]);
-
-    const minute =
-        parts[1];
-
-
-    const ampm =
-        hour >= 12
-            ? "PM"
-            : "AM";
-
-
-    hour =
-        hour % 12 || 12;
-
-
-    return (
-        hour +
-        ":" +
-        minute +
-        " " +
-        ampm
-    );
-}
-
-
-
-/*
-|--------------------------------------------------------------------------
-| MESSAGES
-|--------------------------------------------------------------------------
-*/
-
-function showError(message) {
-
-    error.innerText =
-        message;
-
-    error.classList.remove(
-        "hidden"
-    );
-
-}
-
-
-function showSuccess(message) {
-
-    success.innerText =
-        message;
-
-    success.classList.remove(
-        "hidden"
-    );
-
-}
-
-
-function clearMessages() {
-
-    error.classList.add(
-        "hidden"
-    );
-
-    success.classList.add(
-        "hidden"
-    );
-
+    message.style.display =
+        "block";
 }
 
 </script>
